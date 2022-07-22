@@ -1,19 +1,17 @@
+#include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-/*
- * main -  print name
- * @argc: int.
- * @argv: char.
- * Return: Always 0.
+/**
+ * main - A program that prints all arguements it receives
+ * @argc: The arguement counter
+ * @argv: The arguement values
+ * Return: Always 0 (Success)
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int i;
-
-	for (i = 0 ; i < argc ; i++)
+	while (argc--)
 	{
-		printf("%s\n", argv[i]);
+		printf("%s\n, *argv++");
 	}
 	return (0);
 }
