@@ -1,21 +1,25 @@
 #include "lists.h"
 
 /**
- * sum_listint - A function that sums values from listint_t
- * @head: A pointer listint_t structure
- * Return: The sum of all the data n from list
+ * sum_listint - entry point
+ * @head:	list of numbers
+ * Return:	add all numbers in list
  */
 int sum_listint(listint_t *head)
 {
-	int sum = 0;
+	int add = 0;
+	listint_t *curr;
 
-	if (head == NULL)
+	curr = head;
+
+	if (curr == NULL)
 		return (0);
 
-	while (head)
+	while (curr != NULL)
 	{
-		sum += head->n;
-		head = head->next;
+		add += curr->n;
+		curr = curr->next;
 	}
-	return (sum);
+
+	return (add);
 }
