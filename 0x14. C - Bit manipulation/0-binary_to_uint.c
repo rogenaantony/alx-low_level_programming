@@ -1,30 +1,59 @@
 #include "holberton.h"
-
 /**
- * binary_to_uint - A finction that converts binary number
- * to an unsigned integer
- * @b: A pointer to binary string
- * Return: unsigned integer converted number
+ * binary_to_uint - entry point
+ * @b: string with information about binary number
+ * Return: a decimal number
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int base = 1, result = 0, len = 0;
+	int i = 0, exp = 0;
+	unsigned int res = 0;
 
 	if (b == NULL)
-		return (0);
+		return (res);
 
-	while (b[len])
-		len++;
+	while (b[i])
+		i++;
 
-	while (len)
+	for (i -= 1; i >= 0; i--)
 	{
-		if (b[len - 1] != '0' && b[len - 1] != '1')
-			return (0);
-
-		if (b[len - 1] == '1')
-			result += base;
-		base *= 2;
-		len--;
+		if (b[i] == '1' || b[i] == '0')
+		{
+			if (b[i] == '1')
+			{
+				res += _pow(2, exp);
+				exp++;
+			}
+			else
+			{
+				exp++;
+			}
+		}
+		else
+		{
+			res = 0;
+			return (res);
+		}
 	}
-	return (result);
+	return (res);
+
+}
+/**
+ * _pow - entry point
+ * @base: decimal base number
+ * @exp: decimal expone number
+ * Return: power of number
+ */
+int _pow(int base, int exp)
+{
+	int i = 0, res = 1;
+
+	if (exp == 0)
+		return (res);
+	while (i < exp)
+	{
+		res *= base;
+		i++;
+	}
+	return (res);
 }
