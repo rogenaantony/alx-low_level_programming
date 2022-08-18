@@ -1,53 +1,21 @@
 #include "holberton.h"
+
 /**
- * get_bit- entry point
- * @n: entry number to convert
- * @index: position to search
- * Return: value of position
+ * get_bit - A function that gets a bit at index
+ * @n: The number to get bit from
+ * @index: The index where the bit get at
+ * Return: The value of the bit or -1 if an error occured
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int mask = 0x8000;
-	unsigned int i = 0, count = 0;
-	int num[1024],  value = 0;
+	unsigned long int max = 0x01;
 
-	mask = mask_bin(n);
+	max <<= index;
+	if (max == 0)
+		return (-1);
 
-	while (mask != 0)
-	{
-		if ((n & mask) == 0)
-			num[i] = 0;
-		else
-			num[i] = 1;
-		mask >>= 1;
-		i++;
-	}
-	count = i - 1;
-	if (index > count)
-		value = -1;
+	if ((n & max))
+		return (1);
 	else
-		value = num[count - index];
-	return (value);
+		return (0);
 }
-/**
- * mask_bin - entry point
- * @n: number to know the bits
- * Return: length bits
- */
-int mask_bin(unsigned long int n)
-{
-	unsigned long int mask = 0x8000;
-	int up = 0;
-
-	while (mask != 0)
-	{
-		if ((n & mask) > 0)
-		{
-			up = n & mask;
-			break;
-		}
-		mask >>= 1;
-	}
-	return (up);
-}
-

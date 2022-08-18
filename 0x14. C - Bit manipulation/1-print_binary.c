@@ -1,35 +1,28 @@
 #include "holberton.h"
+
 /**
- * print_binary - entry point
- * @n: entry number to convert
- **/
+ * print_binary - A function that prints a binary number without % or /
+ * @n: The number to be printed
+ * Return: Nothing
+ */
 void print_binary(unsigned long int n)
 {
-	unsigned long int mask = 0x8000;
-	int up = 0;
+	unsigned int flag = 0, max = 32768; /* 1000 0000 0000 0000 */
 
-	while (mask != 0)
+	if (n == 0)
 	{
-		if ((n & mask) > 0)
-		{
-			up = n & mask;
-			break;
-		}
-		mask >>= 1;
-	}
-	mask = up;
-
-	if (n != 0)
-	{
-		while (mask != 0)
-		{
-			if ((n & mask) == 0)
-				_putchar('0');
-			else
-				_putchar('1');
-			mask >>= 1;
-		}
-	}
-	else
 		_putchar('0');
+		return;
+	}
+	while (max)
+	{
+		if (flag == 1 && (n & max) == 0)
+			_putchar('0');
+		else if ((n & max) != 0)
+		{
+			_putchar('1');
+			flag = 1;
+		}
+		max >>= 1;
+	}
 }
