@@ -1,59 +1,37 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * binary_to_uint - entry point
- * @b: string with information about binary number
- * Return: a decimal number
+ * binary_to_uint - converts a binary number to an
+ * unsigned int.
+ * @b: binary.
+ * Return: unsigned int.
  */
 unsigned int binary_to_uint(const char *b)
 {
-	int i = 0, exp = 0;
-	unsigned int res = 0;
+	unsigned int ui;
+	int len, base_two;
 
-	if (b == NULL)
-		return (res);
+	if (!b)
+		return (0);
 
-	while (b[i])
-		i++;
+	ui = 0;
 
-	for (i -= 1; i >= 0; i--)
+	for (len = 0; b[len] != '\0'; len++)
+		;
+
+	for (len--, base_two = 1; len >= 0; len--, base_two *= 2)
 	{
-		if (b[i] == '1' || b[i] == '0')
+		if (b[len] != '0' && b[len] != '1')
 		{
-			if (b[i] == '1')
-			{
-				res += _pow(2, exp);
-				exp++;
-			}
-			else
-			{
-				exp++;
-			}
+			return (0);
 		}
-		else
+
+		if (b[len] & 1)
 		{
-			res = 0;
-			return (res);
+			ui += base_two;
 		}
-	}
-	return (res);
 
-}
-/**
- * _pow - entry point
- * @base: decimal base number
- * @exp: decimal expone number
- * Return: power of number
- */
-int _pow(int base, int exp)
-{
-	int i = 0, res = 1;
-
-	if (exp == 0)
-		return (res);
-	while (i < exp)
-	{
-		res *= base;
-		i++;
 	}
-	return (res);
+	
+	return (ui);
 }
