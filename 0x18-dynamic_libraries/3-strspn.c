@@ -1,25 +1,33 @@
 #include "holberton.h"
+
 /**
- * _strspn - finds the length of a prefix substring
- * @s: the string
- * @accept: the characters that are being matched
- * Return: the length of a prefix substring
+ * _strspn - a function that gets the length of a prefix substring.
+ * @s: an input string
+ * @accept: an input character with to locate into string s
+ * Return: returns pointer to c position
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	char *p = s;
-	char *o = accept;
-	int len = 0, i, k;
+	int count = 0, flag;
+	char *start = accept;
 
-	for (i = 0; p[i] != '\0'; i++)
+	while (*s)
 	{
-		if (len != i)
-			break;
-		for (k = 0; o[k] != '\0'; k++)
+		flag = 0;
+		while (*accept)
 		{
-			if (p[i] == o[k])
-				len++;
+			if (*accept == *s)
+			{
+				count++;
+				flag = 1;
+				break;
+			}
+			accept++;
 		}
+		s++;
+		accept = start;
+		if (flag == 0)
+			break;
 	}
-	return (len);
+	return (count);
 }
