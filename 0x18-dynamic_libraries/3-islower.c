@@ -1,22 +1,19 @@
-#include "holberton.h"
+#include <stdio.h>
 
 /**
- * _islower - Check Holberton
- * @c: An input character
- * Description: function uses _putchar function to print
- * alphabet in lowercase 10 times
- * Return: 1 if is lowercase or 0 if is uppercase
- */
+* _islower  - prints if the characters are lowercase or not
+* 0 for not lowercase, 1 for lowercase
+* @c: the letter being tested for case
+* Return: 0 if not lowercase, 1 if lowercase
+*/
 int _islower(int c)
 {
-	char i;
-	int lower = 0;
-
-	for (i = 'a'; i <= 'z'; i++)
+	if ('a' <= c && c <= 'z')
 	{
-		if (i == c)
-			lower = 1;
+		return (1);
 	}
-
-	return (lower);
+	else
+	{
+		return (0);
+	}
 }
